@@ -1,6 +1,6 @@
 from matplotlib.dates import DateFormatter
 import matplotlib.pyplot as plt
-plt.style.use('ggplot')
+plt.style.use('./helpers/kmaasrud.mplstyle')
 from scipy.interpolate import make_interp_spline
 import numpy as np
 
@@ -20,19 +20,21 @@ def graph(forecast):
         time.append(period.from_time)
         temp.append(float(period.temperature))
 
-    # t = np.linspace(time[0], time[-1], 300)
-    # smoothed = make_interp_spline(time, temp)
-    # T = smoothed(t)
-
     fig, ax = plt.subplots()
 
-    ax.plot(time, temp)
+    for i in range(len(time) - 1):
+        x = [time[i], time[i+1]]
+        y = [temp[i], temp[i+1]]
+        if y[0] > 0 or y[1] > 0:
+            color = "red"
+        else:
+            color = "blue"
+        ax.plot(x, y, color=color)
 
     ax.xaxis.set_major_formatter(DateFormatter('%H:%M'))
     fig.autofmt_xdate()
 
-    ax.set_xlabel('Hours')
-    ax.set_ylabel('Temperature (°C)')
+    ax.set_ylabel('°C')
 
     plt.show()
 

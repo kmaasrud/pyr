@@ -1,0 +1,33 @@
+# Axes
+axes.spines.top : False
+axes.spines.right : False
+axes.spines.left : True
+axes.spines.bottom : True
+
+# Grid
+axes.grid : True
+grid.alpha : 0.2
+
+# Ticks
+xtick.bottom : False
+xtick.labeltop : True
+xtick.labelbottom : False
+xtick.labelsize : small
+ytick.left : False
+ytick.labelsize : small
+
+# Font
+font.family : sans-serif
+font.size : 9.0
+text.color : white
+
+# Bg and fg
+axes.facecolor : black
+axes.edgecolor : white
+
+# Output
+figure.figsize : 7, 5
+figure.dpi : 150
+savefig.dpi : 200
+figure.frameon : True
+figure.autolayout : True
