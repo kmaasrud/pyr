@@ -1,4 +1,5 @@
 from urllib.request import urlopen
+from urllib.parse import quote, urlsplit
 from math import sqrt
 import csv
 
@@ -63,6 +64,8 @@ def url_from_location(location, forecast_type = 'forecast'):
         result = find_closest(location, places)
         result = result['Lenke til engelsk-XML']
 
+    result = quote(result.split('www.yr.no')[1])
+    result = 'http://www.yr.no' + result
     result = result.replace('forecast', decode(forecast_type))
 
     return result

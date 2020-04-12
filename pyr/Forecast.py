@@ -4,21 +4,14 @@ import xml.etree.ElementTree as ET
 from . import Period
 from .helpers import url_from_location, Location
 
-forecast_types = ['forecast', 'hour by hour']
+FORECAST_TYPES = ['forecast', 'hour by hour']
 
 class Forecast:
-    def __init__(self, search = None, coordinates = None, forecast_type = 'forecast'):
-        assert search or coordinates, "Forecast object takes either 'search' or 'latlng' keyword arguments."
-
+    def __init__(self, search, forecast_type = 'forecast'):
+        assert forecast_type in FORECAST_TYPES, f'{forecast_type} not a supported forecast type.'
         self.search = search
-        self.coordinates = coordinates
-        self._forecast_type = forecast_type
-        self.forecast = []
-        
-        if search:
-            self.location = search
-        elif coordinates:
-            self.location = coordinates
+        self._forecast_type = forecast_type        
+        self.location = search
 
 # ---------------------------------------------------------------------------
     
@@ -28,12 +21,8 @@ class Forecast:
 
     @location.setter
     def location(self, search):
-        if type(search) == str:
-            location = Location(search = search)
-        elif type(search) == list:
-            location = Location(latlng = search)
-        else:
-            raise TypeError('Unsupported type for location')
+        location = Location(search)
+
         self.url = url_from_location(location, forecast_type = self._forecast_type)
         with urlopen(self.url) as response:
             root = ET.parse(response).getroot()
@@ -56,6 +45,7 @@ class Forecast:
 
     @forecast_type.setter
     def forecast_type(self, forecast_type):
+        assert forecast_type in FORECAST_TYPES, f'{forecast_type} not a supported forecast type.'
         self._forecast_type = forecast_type
         self.location = self.search
 
