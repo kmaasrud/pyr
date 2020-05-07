@@ -30,12 +30,12 @@ class Forecast:
         self._location = root[0][0].text
         self.country = root[0][2].text
 
-        self.forecast = []
+        self._forecast = []
         data = root.iter('time')
         next(data)
         for time in data:
             period = Period(time, self._location)
-            self.forecast.append(period)
+            self._forecast.append(period)
 
 # ---------------------------------------------------------------------------
 
@@ -52,10 +52,10 @@ class Forecast:
 # ---------------------------------------------------------------------------
 
     def __getitem__(self, index):
-        return self.forecast[index]
+        return self._forecast[index]
 
     def __len__(self):
-        return len(self.forecast)
+        return len(self._forecast)
 
     def __repr__(self):
         return self.location
