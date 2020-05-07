@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyr",
-    version="0.0.1",
+    version="0.1.0",
     author="Knut Magnus Aasrud",
     author_email="kmaasrud@outlook.com",
     description="Python weather API, supported by data from yr.no",
