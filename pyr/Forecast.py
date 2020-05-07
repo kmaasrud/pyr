@@ -29,6 +29,11 @@ class Forecast:
 
         self._location = root[0][0].text
         self.country = root[0][2].text
+        self.altitude = root[0][4].attrib['altitude']
+        self.coordinates = (
+            float(root[0][4].attrib['latitude']),
+            float(root[0][4].attrib['longitude'])
+        )
 
         self._forecast = []
         data = root.iter('time')
