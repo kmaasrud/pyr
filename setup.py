@@ -8,10 +8,10 @@ setuptools.setup(
     version="0.0.1",
     author="Knut Magnus Aasrud",
     author_email="kmaasrud@outlook.com",
-    description="Dealing with forecast data from Yr in Python",
+    description="Python weather API, supported by data from yr.no",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/kmaasrud/pyr",
     packages=setuptools.find_packages(),
     install_requires=[],
     classifiers=[

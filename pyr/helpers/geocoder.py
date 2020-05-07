@@ -1,7 +1,6 @@
 from urllib.request import urlopen
 from urllib.parse import quote
 import json
-from pprint import pformat
 
 GOOGLE_API_KEY = 'AIzaSyA272NouHuizItQDZUQ_vTkikUImEyL4dM'
 
